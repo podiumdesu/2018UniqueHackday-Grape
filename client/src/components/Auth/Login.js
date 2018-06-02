@@ -11,14 +11,14 @@ import Form from './Form'
 const Login = ({ user, login }) => {
   const handleSubmit = e => {
     e.preventDefault()
-    const { email: { value: email }, password: { value: password } } = e.target
-    login({ email, password })
+    const { name: { value: name }, password: { value: password } } = e.target
+    login({ name, password })
   }
 
   return (
     <LoginWrap>
       <WhiteContent>
-        <Form value="SIGN UP" onSubmit={handleSubmit} />
+        <Form value="LOGIN" onSubmit={handleSubmit} />
         <FooterLink to="/signup">{'You don\'t have an account ?'}</FooterLink>
         {user.token && <Redirect to="/" />}
       </WhiteContent>

@@ -6,8 +6,8 @@ import { TextField, Submit } from './Styled'
 const Form = ({ onSubmit, value }) => (
   <form onSubmit={onSubmit}>
     <TextField
-      type="email"
-      name="email"
+      type="name"
+      name="name"
       placeholder="Email address"
       title="Enter your email address"
       required

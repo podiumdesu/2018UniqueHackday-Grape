@@ -1,10 +1,10 @@
 import { actionTypes as types } from '../constants'
 
-const info = (state = {}, action) => {
+const addScript = (state = {}, action) => {
   switch (action.type) {
-    case types.GET_RSSHUB_UPDATE_SUCCESS:
+    case types.GET_RSSHUB_SCRIPT_SUCCESS:
       return action.data
-    case types.GET_RSSHUB_UPDATE_FAILURE:
+    case types.GET_RSSHUB_SCRIPT_FAILURE:
       console.error(action.e)
       return {}
     default:
@@ -12,4 +12,4 @@ const info = (state = {}, action) => {
   }
 }
 
-export default info
+export default addScript

@@ -27,10 +27,12 @@ app.use(bodyParser.urlencoded({            //此项必须在 bodyParser.json 下
   extended: true
 }))
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Content-Type", "application/json; charset=utf-8");
+  next();
 });
+
 console.log("hello, the server is running at port: 2333 , HAVE A NICE DAY! ")
 app.post('/user/register', (req, res) => {
     register(req.body, result => {
