@@ -136,13 +136,17 @@ app.get('/rsshub/getID', (req, res) => {
                 upSubmit: 'Up主投稿',
                 upDynamic: 'Up主动态',
                 weiboUser: '微博关注',
+ // 参数: uid，用户 id，博主主页打开控制台执行
+//  /uid=(\d+)/. exec(document.querySelector('.opt_box .btn_bed').getAttribute('action-data'))[1] 获取
                 juejin: '掘金',
 // 前端	Android	iOS	后端	设计	产品	工具资源	阅读	人工智能
 // frontend	android	ios	backend	design	product	freebie	article	ai
                 jianshuWriter: '简书用户',
-                jianshuHomepage: '简书首页更新',
+                // 
                 zhihuWriter: '知乎用户',
+                // 用户id可在用户主页url中找到
                 zhihuDaily: '知乎日报',
+                // 【固定】daily
                 pixivRank: 'pixiv周排名',
                 doubanHighScoreNow: '豆瓣高分',
                 // northAmericanMovie: '北美票房榜',
