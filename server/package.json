@@ -19,8 +19,12 @@
   "homepage": "https://github.com/podiumdesu/105server#readme",
   "dependencies": {
     "express": "^4.16.2",
+    "fs": "0.0.1-security",
     "jsonwebtoken": "^8.2.2",
     "mongodb": "^3.0.9",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
+    "requests": "^0.2.2",
     "socket.io": "^2.0.4"
   }
 }
