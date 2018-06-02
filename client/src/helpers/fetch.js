@@ -1,9 +1,10 @@
 // fake fetch
 const fetch = (url, { method }) => {
+  const result = { token: '123', email: 'treat@hook.com' }
   if (method === 'GET') {
-    return new Promise((resolve => resolve({ json() { return new Promise(resolve => resolve('get ok')) } })))
+    return new Promise((resolve => resolve({ json() { return new Promise(back => back(result)) } })))
   }
-  return new Promise((resolve => resolve({ json() { return new Promise(resolve => resolve('get ok')) } })))
+  return new Promise((resolve => resolve({ json() { return new Promise(back => back(result)) } })))
 }
 export const post = async ({ url, body, success, failure, dispatch }) => {
   try {
@@ -17,8 +18,7 @@ export const post = async ({ url, body, success, failure, dispatch }) => {
     const data = await res.json()
     dispatch({ type: success, data })
   } catch (e) {
-    console.log(e)
-    dispatch({ type: failure })
+    dispatch({ type: failure, e })
   }
 }
 
@@ -33,6 +33,6 @@ export const get = async ({ url, success, failure, dispatch }) => {
     const data = await res.json()
     dispatch({ type: success, data })
   } catch (e) {
-    dispatch({ type: failure })
+    dispatch({ type: failure, e })
   }
 }

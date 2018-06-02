@@ -9,11 +9,14 @@ import Signup from './Auth/Signup'
 import Header from './Header'
 import { Body } from './Styled'
 
+// eslint-disable-next-line no-unused-vars
+import global from './App.css'
+
 const Home = () => <Async load={import('./Home')} />
 
 const App = ({ user }) => (
   <Body>
-    <Header />
+    <Header logIn={user.token && true} />
     <Switch>
       {user.token && <Route path="/" component={Home} />}
       <Route path="/signup" component={Signup} />

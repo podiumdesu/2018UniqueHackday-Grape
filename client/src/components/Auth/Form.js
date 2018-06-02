@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { TextField, Submit } from '../Styled'
+import { TextField, Submit } from './Styled'
 
-const Form = ({ onSubmit }) => (
+const Form = ({ onSubmit, value }) => (
   <form onSubmit={onSubmit}>
     <TextField
       type="email"
@@ -20,7 +20,7 @@ const Form = ({ onSubmit }) => (
       pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$"
       required
     />
-    <Submit type="submit" value="Continue" />
+    <Submit clickable type="submit" value={value} />
   </form>
 )
 

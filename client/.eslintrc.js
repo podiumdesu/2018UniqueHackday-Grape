@@ -20,6 +20,8 @@ const eslintrc = {
     'babel',
   ],
   rules: {
+    'no-shadow': 0,
+    'no-confusing-arrow': 0,
     'func-names': 0,
     'arrow-body-style': 0,
     'react/sort-comp': 0,
