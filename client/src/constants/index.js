@@ -1,2 +1,4 @@
-export * as urls from './urls'
-export * as actionTypes from './actionTypes'
+import * as urls from './urls'
+import * as actionTypes from './actionTypes'
+
+export { urls, actionTypes }
