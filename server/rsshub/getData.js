@@ -34,7 +34,7 @@ const a = {
             isNew: true,
             content: data.items[i].summary,
             images: [],
-            source: this.items[i].url
+            source: data.items[i].url
           }
         )
       }
@@ -78,7 +78,7 @@ const a = {
             isNew: true,
             content: data.items[i].summary,
             images: [],
-            source: this.items[i].url
+            source: data.items[i].url
           }
         )
       }
@@ -100,7 +100,7 @@ const a = {
             isNew: true,
             content: data.items[i].summary,
             images: [],
-            source: this.items[i].url
+            source: data.items[i].url
           }
         )
       }
@@ -122,7 +122,7 @@ const a = {
             isNew: true,
             content: data.items[i].summary,
             images: data.items[i].image,
-            source: this.items[i].url
+            source: data.items[i].url
           }
         )
       }
@@ -168,7 +168,7 @@ const a = {
             isNew: true,
             content: '',
             images: data.items[i].image,
-            source: this.items[i].url
+            source: data.items[i].url
           }
         )
       }
@@ -190,7 +190,7 @@ const a = {
             isNew: true,
             content: data.items[i].summary,
             images: data.items[i].image,
-            source: this.items[i].url
+            source: data.items[i].url
           }
         )
       }
@@ -212,7 +212,7 @@ const a = {
             isNew: true,
             content: data.items[i].summary,
             images: data.items[i].image,
-            source: this.items[i].url
+            source: data.items[i].url
           }
         )
       }
@@ -235,7 +235,7 @@ const a = {
             isNew: true,
             content: data.items[i].summary,
             images: data.items[i].image,
-            source: this.items[i].url
+            source: data.items[i].url
           }
         )
       }
@@ -257,7 +257,7 @@ const a = {
             isNew: true,
             content: data.items[i].summary,
             images: data.items[i].image,
-            source: this.items[i].url
+            source: data.items[i].url
           }
         )
       }
