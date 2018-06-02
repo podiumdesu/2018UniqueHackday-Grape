@@ -6,6 +6,7 @@ import InfoZone from './Info/InfoZone'
 import { SettingWrap } from './Info/Styled'
 import { MainWrap } from './Styled'
 import { getRsshubID, getRsshubScript, getRsshubUpdate } from '../actions'
+import Setting from './Setting/Setting'
 
 class Home extends React.Component {
   constructor(props) {
@@ -23,7 +24,7 @@ class Home extends React.Component {
     return this.props.user.token ? (
       <MainWrap>
         <SettingWrap>
-          Settings Here~
+          <Setting />
         </SettingWrap>
         <InfoZone />
         <div style={{ clear: 'both' }}/>

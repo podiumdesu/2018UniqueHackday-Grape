@@ -4,12 +4,14 @@ import user from './user'
 import id from './id'
 import info from './info'
 import addScript from './addScript'
+import visible from './visible'
 
 const rootReducer = combineReducers({
   user,
   id,
   info,
   addScript,
+  visible,
 })
 
 export default rootReducer

@@ -68,3 +68,7 @@ export const getRsshubUpdate = () => dispatch => {
     dispatch,
   })
 }
+
+export const updateVisibility = (visibility) => dispatch => {
+  dispatch({ type: types.UPDATE_VISIBILITY, data: visibility })
+}
