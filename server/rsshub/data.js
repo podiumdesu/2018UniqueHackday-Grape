@@ -1,5 +1,13 @@
 const request = require("request-promise")
-
+// {
+//     "uploadScript": {
+//       "content": "21680",
+//       "id": "bangumiUpdate"
+//     },
+//     "info": {
+//       "name": "ggg"
+//     }
+//   }
 const BuploadAPI = {
   "version": "https://jsonfeed.org/version/1",
   "title": "DIYgod 的 bilibili 空间",
@@ -45,18 +53,25 @@ const BuploadAPI = {
   }]
 }
 
-request(`https://rsshub.app/bilibili/user/video/${biliUpUid}.json`)
-    .then(function())
-
 const biliUpUid = '2267573'
-function getBiliUpUpload(biliUpUid, callback) {
-  return new Promise((resolve, reject) => {
-    request(`https://rsshub.app/bilibili/user/video/${biliUpUid}.json`)
-        .then()
-})
-}
+request(`https://rsshub.app/bilibili/user/video/${biliUpUid}.json`)
+    .then(function(body) {
+        console.log(typeof(body))
+        var json = eval("(" + body + ")");
+        console.log(json.items)
+    })
+// request(`https://rsshub.app/bilibili/user/video/${biliUpUid}.json`)
+//     .then(function())
 
-console.log(getBiliUpUpload(biliUpUid).then())
+// const biliUpUid = '2267573'
+// function getBiliUpUpload(biliUpUid, callback) {
+//   return new Promise((resolve, reject) => {
+//     request(`https://rsshub.app/bilibili/user/video/${biliUpUid}.json`)
+//         .then()
+// })
+// }
+
+// console.log(getBiliUpUpload(biliUpUid).then())
 // r = requests.get(bilibiliUploadRssApi, headers=headers)
 // console.log(r.json())
 

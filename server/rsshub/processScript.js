@@ -24,12 +24,12 @@ function runScript(callback) {
             const parseJsonResult = eval("(" + body + ")")
             console.log(parseJsonResult.items.length)
             const result = getData[scriptNo].filter(parseJsonResult)
-            console.log(result)
+            for (let i = 0; i < result.length; i++) {
+              insertData(result[i], dbName, collection, function(insert_result) {
+              })
+            }
+            client.close()
           })
-        // insertData(scriptWithNum, dbName, collection, function(insert_result) {
-        //   let result = getData[scriptNo]
-        //   client.close()
-        // })
       } else {
         callback("1")
         return 0

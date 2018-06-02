@@ -13,6 +13,11 @@ var auth = require("./user/auth")
 var config = require("./config/config")
 const saveScript = require("./rsshub/process")
 const processData = require("./rsshub/processScript")
+
+const MongoClient = require('mongodb').MongoClient
+const url = 'mongodb://localhost:27017'
+
+
 //将 socket.io 绑定到服务器上，于是任何连接到该服务器的客户端都具备了实时通信功能。
 server.listen(2333)
 //Warning: express4.0 seperate the body-parser, so we need to config it.
@@ -21,7 +26,11 @@ app.use(bodyParser.json({limit: '1mb'}))  //body-parser 解析json格式数据
 app.use(bodyParser.urlencoded({            //此项必须在 bodyParser.json 下面,为参数编码
   extended: true
 }))
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 console.log("hello, the server is running at port: 2333 , HAVE A NICE DAY! ")
 app.post('/user/register', (req, res) => {
     register(req.body, result => {
@@ -45,7 +54,7 @@ app.post('/user/register', (req, res) => {
 app.post('/user/login', (req, res) => {
     login(req.body, result => {
         //登录成功
-        console.log(req.body)
+        // console.log(req.body)
         if (result === "1") {
             let token = jwt.sign(req.body, app.get("secret"), {
                 expiresIn: 60*60*24
@@ -139,25 +148,23 @@ app.get('/rsshub/getID', (req, res) => {
                 // 
                 zhihuWriter: '知乎用户',
                 // 用户id可在用户主页url中找到
-                zhihuDaily: '知乎日报',
-                // 【固定】daily
                 pixivRank: 'pixiv周排名',
-                doubanHighScoreNow: '豆瓣高分',
-                // northAmericanMovie: '北美票房榜',
+                // 【固定】week
                 developerToutiao: '开发者头条',
+                // 【固定】today
                 toutiaoKeyword: '今日头条',
-                cctvNews: '央视国内新闻',
-                ins: 'Instagram',
-                youtube: 'youtube频道',
+                // keyword : ai
                 douyuStream: '斗鱼直播间',
+                // 24422 斗鱼直播间号
                 v2exPopular: 'V2EX最新',
+                // 【固定】latest
             }
         )
     )
     res.end()
 })
 app.post('/rsshub/getScript', (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     // 链接
     const scriptInfo = {
         script: req.body.uploadScript.content,   // 解析对象
@@ -180,7 +187,33 @@ app.post('/rsshub/getScript', (req, res) => {
 app.post('/rsshub/update', (req, res) => {
     processData(result => {
         if(result === '1'){
-            res.send(200)
+            MongoClient.connect(url, function(err, client) {
+                const dbName = 'userlist'
+                let returnData = []
+                const collection = client.db(dbName).collection('finalResult').find({})
+                console.log("数据库连接成功，准备返回最终数据")
+                collection.each(function(error, doc) {
+                    if (doc !== null) {
+                        // console.log(doc)
+                        returnData.push(
+                            {
+                                type: doc.type,
+                                author: doc.author,
+                                lastUpdate: doc.lastUpdate,
+                                title: doc.title,
+                                isNew: doc.isNew,
+                                content: doc.content,
+                                images: doc.images,
+                                source: doc.source
+                            }
+                        )
+                    } else {
+                        client.close()
+                        res.write(JSON.stringify(returnData))
+                        res.end()
+                    }
+                })
+            })
         }
     })
 })
