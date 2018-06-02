@@ -4,6 +4,7 @@ import { ColoredBackground, ContentWrap, InfoStyled } from './Styled'
 import Content from './Content'
 import DownsideInfo from './DownsideInfo'
 
+
 const Info = ({ info }) => {
 // eslint-disable-next-line no-unused-vars
   const { type, author, lastUpdate, title, isNew, content, images, source } = info

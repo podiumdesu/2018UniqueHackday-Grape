@@ -11,7 +11,7 @@ function runScript(callback) {
     const sourceCollection = client.db(dbName).collection('uploadInfo').find({})
     // console.log(sourceCollection)
     // 每次更新都需要清空数据库，重新获取数据
-    collection.remove()
+    //collection.remove()
     console.log("数据库连接成功！")
     sourceCollection.each(function(error, doc) {  // 存放了scriptContent, scriptNo, info
       if (doc !== null) {

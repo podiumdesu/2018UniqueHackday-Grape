@@ -7,33 +7,38 @@ import { SettingWrap } from './Info/Styled'
 import { MainWrap } from './Styled'
 import { getRsshubID, getRsshubScript, getRsshubUpdate } from '../actions'
 
-const Home = ({ user, info, getRsshubID, getRsshubUpdate }) => {
-  getRsshubID()
-  getRsshubUpdate()
-  return user.token ? (
-    <MainWrap>
-      <SettingWrap>
-        Settings Here~
-      </SettingWrap>
-      <InfoZone
-        items={
-          info && info.length
-            ? info
-            : []
-        }
-      />
-      <div style={{ clear: 'both' }}/>
-    </MainWrap>
-  ) : (
-    <Redirect to="/login"/>
-  )
+class Home extends React.Component {
+  constructor(props) {
+    super(props)
+    this.getRsshubID = props.getRsshubID
+    this.getRsshubUpdate = props.getRsshubUpdate
+  }
+
+  componentDidMount() {
+    this.getRsshubID()
+    this.getRsshubUpdate()
+  }
+
+  render() {
+    return this.props.user.token ? (
+      <MainWrap>
+        <SettingWrap>
+          Settings Here~
+        </SettingWrap>
+        <InfoZone />
+        <div style={{ clear: 'both' }}/>
+      </MainWrap>
+    ) : (
+      <Redirect to="/login"/>
+    )
+  }
 }
 
 Home.propTypes = {
   user: PropTypes.shape({}).isRequired,
 }
 
-export default connect(state => ({ user: state.user, info: state.info }), {
+export default connect(state => ({ user: state.user }), {
   getRsshubID,
   getRsshubScript,
   getRsshubUpdate,
