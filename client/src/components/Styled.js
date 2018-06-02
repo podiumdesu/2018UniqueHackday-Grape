@@ -11,11 +11,8 @@ export const TitleImage = styled.img`
   margin-top: 40px;
   margin-bottom: 40px;
 `
-export const Message = styled.h2`
-  font-family: sans-serif;
-  font-weight: 100;
-  margin-top: 30vh;
-`
 
-export const Blue = styled.span`color: rgb(0, 128, 255);`
+export const MainWrap = styled.div`
+  padding-top: 80px
+`
 
