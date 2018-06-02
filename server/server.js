@@ -11,7 +11,8 @@ var login = require("./user/login")
 var edit = require("./user/edit")
 var auth = require("./user/auth")
 var config = require("./config/config")
-
+const saveScript = require("./rsshub/process")
+const processData = require("./rsshub/processScript")
 //将 socket.io 绑定到服务器上，于是任何连接到该服务器的客户端都具备了实时通信功能。
 server.listen(2333)
 //Warning: express4.0 seperate the body-parser, so we need to config it.
@@ -118,10 +119,35 @@ app.post('/user/edit', (req, res) => {
         }
     })
 })
-// //服务器监听所有客户端，并返回该新连接对象
-// io.sockets.on('connection', socket => {
-//     socket.emit('news', { hello: 'world' })
-//     socket.on('my other event', data => {
-//       console.log(data)
-//     })
-// })
+
+const scriptArr = []
+// {req.body.uploadScript, req.body.info}
+
+app.post('/rsshub/getScript', (req, res) => {
+    console.log(req.body)
+    const scriptInfo = {
+        script: req.body.uploadScript.content,   // 解析对象
+        scriptNo: req.body.uploadScript.id,
+        info: req.body.info // 存储对象
+    }
+    saveScript(scriptInfo, result => {
+        if (result === '1') {
+            res.write("200")
+            console.log("存储成功")
+            res.end()
+        } else {
+            console.log("存储失败")
+            res.write("500")
+            res.end()
+        }
+    })
+})
+
+app.post('/rsshub/update', (req, res) => {
+    processData(result => {
+        console.log(result)
+        if(result === '1'){
+            res.send(200)
+        }
+    })
+})
