@@ -122,9 +122,39 @@ app.post('/user/edit', (req, res) => {
 
 const scriptArr = []
 // {req.body.uploadScript, req.body.info}
-
+app.get('/rsshub/getID', (req, res) => {
+    res.write(
+        JSON.stringify(
+            {
+                bangumiUpdate: 'b站订阅番剧',
+                upSubmit: 'Up主投稿',
+                upDynamic: 'Up主动态',
+                weiboUser: '微博关注',
+                juejin: '掘金',
+// 前端	Android	iOS	后端	设计	产品	工具资源	阅读	人工智能
+// frontend	android	ios	backend	design	product	freebie	article	ai
+                jianshuWriter: '简书用户',
+                jianshuHomepage: '简书首页更新',
+                zhihuWriter: '知乎用户',
+                zhihuDaily: '知乎日报',
+                pixivRank: 'pixiv周排名',
+                doubanHighScoreNow: '豆瓣高分',
+                // northAmericanMovie: '北美票房榜',
+                developerToutiao: '开发者头条',
+                toutiaoKeyword: '今日头条',
+                cctvNews: '央视国内新闻',
+                ins: 'Instagram',
+                youtube: 'youtube频道',
+                douyuStream: '斗鱼直播间',
+                v2exPopular: 'V2EX最新',
+            }
+        )
+    )
+    res.end()
+})
 app.post('/rsshub/getScript', (req, res) => {
     console.log(req.body)
+    // 链接
     const scriptInfo = {
         script: req.body.uploadScript.content,   // 解析对象
         scriptNo: req.body.uploadScript.id,
@@ -145,7 +175,6 @@ app.post('/rsshub/getScript', (req, res) => {
 
 app.post('/rsshub/update', (req, res) => {
     processData(result => {
-        console.log(result)
         if(result === '1'){
             res.send(200)
         }
