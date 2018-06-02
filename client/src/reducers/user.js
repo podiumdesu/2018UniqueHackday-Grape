@@ -7,6 +7,7 @@ const user = (state = {}, action) => {
     case types.LOGIN_SUCCESS:
       return action.data
     case types.LOGIN_FAILURE:
+      console.error(action.e)
       return {}
     default:
       return state

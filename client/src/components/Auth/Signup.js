@@ -5,7 +5,7 @@ import { Redirect } from 'react-router-dom'
 
 import { signup } from '../../actions'
 
-import { FormTitle, FooterLink } from '../Styled'
+import { FooterLink, LoginWrap, WhiteContent } from './Styled'
 import Form from './Form'
 
 const Signup = ({ user, signup }) => {
@@ -16,12 +16,13 @@ const Signup = ({ user, signup }) => {
   }
 
   return (
-    <div>
-      <FormTitle>Sign up</FormTitle>
-      <Form onSubmit={handleSubmit} />
-      <FooterLink to="/login">Already have an account ?</FooterLink>
-      {user.token && <Redirect to="/" />}
-    </div>
+    <LoginWrap>
+      <WhiteContent>
+        <Form value="LOGIN" onSubmit={handleSubmit} />
+        <FooterLink to="/login">Already have an account ?</FooterLink>
+        {user.token && <Redirect to="/" />}
+      </WhiteContent>
+    </LoginWrap>
   )
 }
 

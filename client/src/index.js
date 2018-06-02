@@ -6,6 +6,8 @@ import { BrowserRouter } from 'react-router-dom'
 
 import { store } from './store'
 
+import normalize from 'normalize.css'
+
 import App from './components/App'
 
 if (process.env.NODE_ENV === 'production') Offline.install()

@@ -1,12 +1,13 @@
 import React from 'react'
 
-import { Title } from '../Styled'
-import Github from './Github'
+import { TitleImage } from '../Styled'
 
-const Header = () => (
-  <div>
-    <Title>redux-react-starter</Title>
-    <Github />
+import banner from './banner.png'
+import bannerW from './banner-white.png'
+
+const Header = ({ logIn }) => (
+  <div style={{ backgroundColor: `${logIn ? '#705A92' : ''}` }}>
+    <TitleImage src={logIn ? bannerW : banner} alt={banner} />
   </div>
 )
 
