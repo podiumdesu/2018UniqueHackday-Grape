@@ -14,26 +14,37 @@ function runScript(callback) {
     //collection.remove()
     console.log("数据库连接成功！")
     sourceCollection.each(function(error, doc) {  // 存放了scriptContent, scriptNo, info
-      if (doc !== null) {
+      let temp = 1
+      while (temp) {
         let scriptContent = doc.script
         let scriptNo = doc.scriptNo
         let requestUrl = getData[scriptNo].scriptWeb + doc.script + '.json'
         console.log(requestUrl)
-        request(requestUrl)
-          .then(body = function(body) {
-            const parseJsonResult = eval("(" + body + ")")
-            console.log(parseJsonResult.items.length)
-            const result = getData[scriptNo].filter(parseJsonResult)
-            for (let i = 0; i < result.length; i++) {
-              insertData(result[i], dbName, collection, function(insert_result) {
-              })
-            }
-            client.close()
-          })
-      } else {
-        callback("1")
-        return 0
+        new Promise((resolve) => {
+          request(requestUrl)
+            .then(body = function(body) {
+              const parseJsonResult = eval("(" + body + ")")
+              // console.log(parseJsonResult.items.length)
+              const result = getData[scriptNo].filter(parseJsonResult)
+              for (let i = 0; i < result.length; i++) {
+                new Promise((resolve, reject) => {
+                  collection.insert(result, function(err, res) {
+                      // if (err) {
+                      //     console.log("ERROR:" + err)
+                      // }
+                  })
+                }).then()
+              }
+              console.log('done promise')
+              resolve(temp)
+            })
+        }).then(() => {
+          if (doc === null) temp = 0
+        })
       }
+      callback("1")
+      console.log('ok')
+      return 0
     })
   })
 }

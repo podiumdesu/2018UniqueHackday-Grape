@@ -8,6 +8,17 @@ const request = require("request-promise")
 //       "name": "ggg"
 //     }
 //   }
+
+
+// {
+//     "upSubmit": {
+//       "content": "4377887",
+//       "id": "upSubmit"
+//     },
+//     "info": {
+//       "name": "ggg"
+//     }
+//   }
 const BuploadAPI = {
   "version": "https://jsonfeed.org/version/1",
   "title": "DIYgod 的 bilibili 空间",
