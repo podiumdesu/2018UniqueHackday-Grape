@@ -39,7 +39,7 @@ upSubmit: {
       }
       return result
     },
-    scriptWeb: uid => `https://rsshub.app/bilibili/user/video/${uid}.JSON`
+    scriptWeb: uid => `https://rsshub.app/bilibili/user/video/${uid}.json`
   },
 upDynamic: {
     filter: function(data) {
@@ -54,7 +54,7 @@ upDynamic: {
             isNew: true,
             content: data.items[i].summary,
             images: [],
-            source: this.items[i].url
+            source: data.items[i].url
           }
         )
       }
@@ -62,6 +62,9 @@ upDynamic: {
     },
     scriptWeb: uid => `https://rsshub.app/bilibili/user/dynamic/${uid}.json`
   },
+
+  // LGD 电子俱乐部
+  // 2157471171
 weiboUser: {
     filter: function(data) {
       const result = []
@@ -83,6 +86,7 @@ weiboUser: {
     },
     scriptWeb: uid => `https://rsshub.app/weibo/user/${uid}.json`
   },
+  // ai frontend
 juejin: {
     filter: function(data) {
       const result = []
@@ -104,6 +108,7 @@ juejin: {
     },
     scriptWeb: uid => `https://rsshub.app/juejin/category/${uid}.json`
   },
+  // 92eb338437ee
   jianshuWriter: {
     filter: function(data) {
       const result = []
@@ -125,6 +130,9 @@ juejin: {
     },
     scriptWeb: uid => `https://rsshub.app/jianshu/user/${uid}.json`
   },
+
+  // 知乎作者
+  // vzch
   zhihuWriter: {
     filter: function(data) {
       const result = []
@@ -140,7 +148,7 @@ juejin: {
             isNew: true,
             content: dynamicTitle[1],
             images: data.items[i].image,
-            source: this.items[i].url
+            source: data.items[i].url
           }
         )
       }
@@ -148,6 +156,8 @@ juejin: {
     },
     scriptWeb: uid => `https://rsshub.app/zhihu/people/activities/${uid}.json`
   },
+  // p站排行
+  // week
 pixivRank: {
     filter: function(data) {
       const result = []
@@ -156,7 +166,7 @@ pixivRank: {
           {
             type: 'p站周排行',
             author: '',
-            lastUpdate: data.items[i].date_published,
+            lastUpdate: new Date(),
             title: data.items[i].title,
             isNew: true,
             content: '',
@@ -169,6 +179,8 @@ pixivRank: {
     },
     scriptWeb: uid => `https://rsshub.app/pixiv/ranking/${uid}.json`
   },
+  // today
+  // good
 developerToutiao: {
     filter: function(data) {
       const result = []
@@ -190,6 +202,8 @@ developerToutiao: {
     },
     scriptWeb: uid => `https://rsshub.app/toutiao/${uid}.json`
   },
+  // ai
+  // good
 toutiaoKeyword: {
     filter: function(data) {
       const result = []
@@ -211,6 +225,8 @@ toutiaoKeyword: {
     },
     scriptWeb: uid => `https://rsshub.app/jinritoutiao/keyword/${uid}.json`
   },
+  // 97376
+  // 斗鱼
 douyuStream: {
     filter: function(data) {
       let name = data.title.split('的')
@@ -233,6 +249,8 @@ douyuStream: {
     },
     scriptWeb: uid => `https://rsshub.app/douyu/room/${uid}.json`
   },
+  // latest
+  // good
 v2exPopular: {
     filter: function(data) {
       const result = []
@@ -260,7 +278,8 @@ const mapArgvToPromise = (type, uid, ...argv) => {
   return new Promise((resolve, reject) => {
     request(config[type].scriptWeb(uid, ...argv))
       .then(html => {
-        resolve(config.bangumiUpdate.filter(eval("(" + html + ")")));
+        console.log(html)
+        resolve(config[type].filter(eval("(" + html + ")")));
       })
       .catch(e => reject(e));
   });
