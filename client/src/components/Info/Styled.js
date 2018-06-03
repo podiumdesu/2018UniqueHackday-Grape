@@ -57,6 +57,7 @@ export const StyledH2 = styled.h2`
 `
 export const StyledA = styled.a`
   font-weight: bold;
+  color: #705A92;
 `
 
 export const DownSide = styled.div`

@@ -1,14 +1,17 @@
 import React from 'react'
-import { Checkbox, Button } from 'antd'
 import { connect } from 'react-redux'
 
-const Setting = ({ id }) => {
-  const scripts = [{ title: 'bilibili' }, { title: 'douyu' }, { title: 'weibo' }]
-  return (<div>
-    {scripts && scripts.length ? scripts.map((script, i) => (
-      <Checkbox key={i}>{script.title}</Checkbox>)) : 'empty'}
-    <Button type="dashed" onClick={() => console.log('c')}>ADD NEW</Button>
-  </div>)
+const Setting = ({ scripts, visible }) => {
+  return (
+    <div>
+      {
+        scripts && scripts.length ? scripts.map(({ type }, i) => (
+          <checkbox value={false} key={i}>
+            {type}</checkbox>)) : 'empty'
+      }
+      <button onClick={() => console.log('c')}>ADD NEW</button>
+    </div>
+  )
 }
 
-export default connect(state => ({ id: state.id }), {})(Setting)
+export default connect(state => ({ id: state.id, scripts: state.scripts, visible: state.visible }), {})(Setting)

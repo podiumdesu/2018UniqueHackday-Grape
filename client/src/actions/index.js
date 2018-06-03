@@ -1,5 +1,5 @@
 import { actionTypes as types, urls } from '../constants'
-import { post, get } from '../helpers'
+import { post, get, deleteR } from '../helpers'
 
 export const signup = ({ name, password }) => dispatch => {
   dispatch({ type: types.SIGNUP_REQUEST })
@@ -48,23 +48,44 @@ export const getRsshubID = () => dispatch => {
   })
 }
 
-export const getRsshubScript = ({ uploadScript, info }) => dispatch => {
-  dispatch({ type: types.GET_RSSHUB_SCRIPT_REQUEST })
+export const addNewScript = ({ type, uid, other }) => dispatch => {
+  dispatch({ type: types.ADD_NEW_SCRIPT_REQEUST })
   post({
-    url: urls.GET_RSSHUB_SCRIPT,
-    body: { uploadScript, info },
-    success: types.GET_RSSHUB_SCRIPT_SUCCESS,
-    failure: types.GET_RSSHUB_SCRIPT_FAILURE,
+    url: urls.ADD_NEW_SCRIPT,
+    body: { type, uid, other },
+    success: types.ADD_NEW_SCRIPT_SUCCESS,
+    failure: types.ADD_NEW_SCRIPT_FAILURE,
     dispatch,
   })
 }
 
-export const getRsshubUpdate = () => dispatch => {
-  dispatch({ type: types.GET_RSSHUB_UPDATE_REQUEST })
-  post({
-    url: urls.GET_RSSHUB_UPDATE,
-    success: types.GET_RSSHUB_UPDATE_SUCCESS,
-    failure: types.GET_RSSHUB_UPDATE_FAILURE,
+export const deleteSingleScript = ({ uuid }) => dispatch => {
+  dispatch({ type: types.DELETE_SINGLE_SCRIPT_REQUEST })
+  deleteR({
+    url: urls.DELETE_SINGLE_SCRIPT,
+    body: { uuid },
+    success: types.DELETE_SINGLE_SCRIPT_SUCCESS,
+    failure: types.DELETE_SINGLE_SCRIPT_FAILURE,
+    dispatch,
+  })
+}
+
+export const getAllScript = () => dispatch => {
+  dispatch({ type: types.GET_ALL_SCRIPT_REQUEST })
+  get({
+    url: urls.GET_ALL_SCRIPT,
+    success: types.GET_ALL_SCRIPT_SUCCESS,
+    failure: types.GET_ALL_SCRIPT_FAILURE,
+    dispatch,
+  })
+}
+
+export const updateAllScript = () => dispatch => {
+  dispatch({ type: types.UPDATE_ALL_SCRIPT_REQUEST })
+  get({
+    url: urls.UPDATE_ALL_SCRIPT,
+    success: types.UPDATE_ALL_SCRIPT_SUCCESS,
+    failure: types.UPDATE_ALL_SCRIPT_FAILURE,
     dispatch,
   })
 }
