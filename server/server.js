@@ -222,7 +222,7 @@ app.delete("/rsshub/single", (req, res) => {
     });
 });
 
-app.post("/rsshub/update", (req, res) => {
+app.get("/rsshub/update", (req, res) => {
   updateAllScripts()
     .then(r => {
       res.write(JSON.stringify(r));

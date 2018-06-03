@@ -5,28 +5,35 @@ import { Redirect } from 'react-router-dom'
 import InfoZone from './Info/InfoZone'
 import { SettingWrap } from './Info/Styled'
 import { MainWrap } from './Styled'
-import { getRsshubID, getRsshubScript, getRsshubUpdate } from '../actions'
+import { getRsshubID, updateAllScript, getAllScript } from '../actions'
 import Setting from './Setting/Setting'
 
 class Home extends React.Component {
   constructor(props) {
     super(props)
     this.getRsshubID = props.getRsshubID
-    this.getRsshubUpdate = props.getRsshubUpdate
+    this.updateAllScript = props.updateAllScript
+    this.getAllScript = props.getAllScript
+    this.update = this.update.bind(this)
+  }
+
+  update() {
+    this.getRsshubID()
+    this.updateAllScript()
+    this.getAllScript()
   }
 
   componentDidMount() {
-    this.getRsshubID()
-    this.getRsshubUpdate()
+    this.update()
   }
 
   render() {
     return this.props.user.token ? (
       <MainWrap>
         <SettingWrap>
-          <Setting />
+          <Setting update={this.update}/>
         </SettingWrap>
-        <InfoZone />
+        <InfoZone/>
         <div style={{ clear: 'both' }}/>
       </MainWrap>
     ) : (
@@ -41,7 +48,7 @@ Home.propTypes = {
 
 export default connect(state => ({ user: state.user }), {
   getRsshubID,
-  getRsshubScript,
-  getRsshubUpdate,
+  updateAllScript,
+  getAllScript,
 })(Home)
 
