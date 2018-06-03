@@ -21,7 +21,7 @@ export const InfoStyled = styled.div`
   background-color: white;
   color: black;
   width: 80%;
-  margin: 16px auto;
+  margin: 30px auto;
   position: relative;
   border-radius: 6px;
   text-align: left;
@@ -44,7 +44,7 @@ export const ColoredBackground = styled.div`
 `
 
 export const ContentWrap = styled.div`
-  padding: 0 30px 30px;
+  padding: 40px 40px 60px 50px;
 `
 
 export const StyledContent = styled.div`
@@ -53,11 +53,13 @@ export const StyledContent = styled.div`
 `
 
 export const StyledH2 = styled.h2`
+  font-size: 20px;
   margin: 8px 0;
 `
 export const StyledA = styled.a`
   font-weight: bold;
-  color: #705A92;
+  opacity: 0.9;
+  color: #432B69;
 `
 
 export const DownSide = styled.div`
@@ -66,11 +68,15 @@ export const DownSide = styled.div`
 
 export const UpdateTime = styled.div`
   position: absolute;
-  right: 8px;
-  bottom: 6px;
+  right: 28px;
+  bottom: 28px;
   color: #705A92;
+  opacity: 0.7;
   font-weight: thin;
-  font-size: 14px;
+  font-size: 12px;
+`
+export const StyledSpan = styled.span`
+  opacity: 0.9;
 `
 
 export const ColoredTitle = styled.div`

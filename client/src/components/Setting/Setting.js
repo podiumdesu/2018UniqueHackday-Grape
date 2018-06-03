@@ -4,7 +4,7 @@ import { StyledBox, StyledButton, StyledInput, StyledSetting } from './Styled'
 import { updateVisibility, addNewScript } from '../../actions'
 import typeColor from '../Info/typeColor'
 
-const Setting = ({ id, scripts, visible, updateVisibility, addNewScript }) => {
+const Setting = ({ id, scripts, visible, updateVisibility, addNewScript, update }) => {
   const parseType = type => id[type]
   return (
     <StyledSetting>
@@ -34,6 +34,7 @@ const Setting = ({ id, scripts, visible, updateVisibility, addNewScript }) => {
               type: content.slice(0, content.indexOf('|')),
               uid: content.slice(content.indexOf('|') + 1, content.length - 1)
             })
+            update()
           }
         }}
       />
