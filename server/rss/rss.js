@@ -156,6 +156,28 @@ juejin: {
     },
     scriptWeb: uid => `https://rsshub.app/zhihu/people/activities/${uid}.json`
   },
+  zhihuZhuanlan: {
+    filter: function(data) {
+      const result = []
+      const dynamicTitle = data.title.split('-')
+      for (let i = 0; i < data.items.length; i++) {
+        result.push(
+          {
+            type: '知乎专栏',
+            author: dynamicTitle[1],
+            lastUpdate: data.items[i].date_published,
+            title: data.items[i].title,
+            isNew: true,
+            content: '',
+            images: data.items[i].image,
+            source: data.items[i].url
+          }
+        )
+      }
+      return result
+    },
+    scriptWeb: uid => `https://rsshub.app/zhihu/zhuanlan/${uid}.json` 
+  },
   // p站排行
   // week
 pixivRank: {

@@ -40,6 +40,14 @@
   "uid": "vzch"
 }
 
+// 知乎专栏
+// shimo [good]
+
+{
+  "type": "zhihuZhuanlan",
+  "uid": "shimo"
+}
+
 // p站排行
 // week
 
